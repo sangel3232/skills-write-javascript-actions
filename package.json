@@ -14,11 +14,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "bugs": {
     "url": "https://github.com/sangel3232/skills-write-javascript-actions/issues"
   },
   "homepage": "https://github.com/sangel3232/skills-write-javascript-actions#readme",
+  "type": "module",
   "dependencies": {
     "@actions/core": "^3.0.0",
     "@vercel/ncc": "^0.38.4",
