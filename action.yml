@@ -1,10 +1,34 @@
-name: "Joke Action"
-description: "Fetches a random joke and exposes it as an output"
+name: Joke Action
+run-name: Dad Joke for issue ${{ github.event.issue.number }} by ${{ github.event.comment.user.login }}
 
-outputs:
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
   joke:
-    description: "The fetched joke text"
+    if: startsWith(github.event.comment.body, '/joke')
+    runs-on: ubuntu-latest
 
+<<<<<<< Updated upstream
 runs:
   using: node24
   main: dist/index.js
+=======
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Get Joke
+        id: get-joke
+        uses: ./
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: ${{ steps.get-joke.outputs.joke }}
+>>>>>>> Stashed changes
