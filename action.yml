@@ -13,14 +13,8 @@ jobs:
   joke:
     if: startsWith(github.event.comment.body, '/joke')
     runs-on: ubuntu-latest
-
-<<<<<<< Updated upstream
-runs:
-  using: node24
-  main: dist/index.js
-=======
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
 
       - name: Get Joke
         id: get-joke
@@ -31,4 +25,3 @@ runs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: ${{ steps.get-joke.outputs.joke }}
->>>>>>> Stashed changes
