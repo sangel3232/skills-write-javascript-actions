@@ -1,27 +1,12 @@
-name: Joke Action
-run-name: Dad Joke for issue ${{ github.event.issue.number }} by ${{ github.event.comment.user.login }}
+name: 'Dad Joke Action'
+description: 'Get a random dad joke'
 
-on:
-  issue_comment:
-    types: [created]
-
-permissions:
-  issues: write
-  contents: read
-
-jobs:
+# Aquí defines lo que tu acción devuelve (outputs)
+outputs:
   joke:
-    if: startsWith(github.event.comment.body, '/joke')
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    description: 'The random dad joke string'
 
-      - name: Get Joke
-        id: get-joke
-        uses: ./
-
-      - name: Create comment
-        uses: peter-evans/create-or-update-comment@v5
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          body: ${{ steps.get-joke.outputs.joke }}
+# Aquí es donde le dices a GitHub qué archivo ejecutar
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
